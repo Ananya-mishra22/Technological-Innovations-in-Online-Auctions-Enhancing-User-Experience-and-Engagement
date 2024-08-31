@@ -1,0 +1,187 @@
+{% extends "index1.html" %}
+{% block title %}Home{% endblock title %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Main Page</title>
+<style>
+    /* Basic styling for the page */
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Jumbotron styling */
+    .cal-text{
+        text-align: center;
+        position: absolute;
+        font-weight: bold;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: black;
+      }
+      
+      
+    /* Auction items grid */
+    .container {
+        width: 90%;
+        margin: 0 auto;
+        padding: 20px 0;
+    }
+
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .col {
+        width: 30%;
+        margin-bottom: 20px;
+    }
+
+    .card {
+        border: 1px solid var(--border-color);
+        border-radius: 5px;
+        padding: 15px;
+        text-align: center;
+        background-color: var(--card-bg-color);
+        color: var(--text-color);
+    }
+
+    .card img {
+        max-width: 100%;
+        border-radius: 5px;
+        margin-bottom: 15px;
+    }
+
+    .card-title {
+        font-size: 1.5em;
+        margin-bottom: 10px;
+    }
+
+    .card-text {
+        font-size: 1em;
+        margin-bottom: 15px;
+    }
+
+    .card .btn {
+        padding: 10px 20px;
+        background-color: blue; /* Keep button color intact */
+        color: white; /* Keep text color white */
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+    /* Footer styling */
+    footer {
+        background-color: var(--bg-color);
+        text-align: center;
+        padding: 20px;
+        margin-top: 20px;
+        color: var(--text-color);
+    }
+
+    footer p {
+        margin: 0;
+        font-size: 1em;
+    }
+
+    ul {
+        list-style-type: none;
+    }
+</style>
+</head>
+<body>
+
+<!-- Banner -->
+<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active" style="opacity:0.6;
+      background:white;">
+        <img class="d-block w-100" src="https://media.istockphoto.com/id/1216963278/vector/female-character-holding-bid-plate-in-hand-stand-at-huge-laptop-with-online-auction.jpg?s=612x612&w=0&k=20&c=uO0zzzH3r-O4MTf6RPkIFdZr6EcaBOS9mYV-q0yg1wU=" alt="First slide" height="600" style="opacity: 0.5;">
+            <div class="cal-text">
+                <h1 id="cal">Discover Exclusive Auctions</h1>
+                <p id="cal">Find unique items at great prices.</p>
+            </div>
+    </div>
+      <div class="carousel-item" style="opacity:0.6;
+      background:white;">
+        <img class="d-block w-100" src="https://static.startuptalky.com/2022/05/online-auction-websites-StartupTalky--1-.jpg" alt="Second slide" height="600" style="opacity: 0.5;">
+        <div class="cal-text">
+            <h1>Discover Exclusive Auctions</h1>
+            <p>Find unique items at great prices.</p>
+        </div>
+    </div>
+      <div class="carousel-item" style="opacity:0.6;
+      background:white;">
+        <img class="d-block w-100" src="https://www.appsflyer.com/wp-content/uploads/2024/01/what-is-second-price-auction-1.jpg" alt="Third slide" height="600" style="opacity: 0.5;">
+        <div class="cal-text">
+            <h1>Discover Exclusive Auctions</h1>
+            <p>Find unique items at great prices.</p>
+        </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </a>
+</div>
+
+<!-- Auction Items -->
+<div class="container">
+    <div class="row">
+        <!-- Auction Item 1 -->
+        <div class="col">
+            <div class="card"><a href='/item' style="text-decoration: none; color: white;">
+                <img src="item1.jpg" alt="Item 1">
+                <h5 class="card-title">Item 1</h5>
+                <p class="card-text">Description of item 1.</p>
+                <a href="/item" class="btn">View Item</a>
+            </a>
+            </div>
+        </div>
+
+        <!-- Auction Item 2 -->
+        <div class="col">
+            <div class="card"><a href='#' style="text-decoration: none; color: white;">
+                <img src="item2.jpg" alt="Item 2">
+                <h5 class="card-title">Item 2</h5>
+                <p class="card-text">Description of item 2.</p>
+                <a href="#" class="btn">View Item</a>
+            </a>
+            </div>
+        </div>
+
+        <!-- Auction Item 3 -->
+        <div class="col">
+            <div class="card"><a href='#' style="text-decoration: none; color: white;">
+                <img src="item3.jpg" alt="Item 3">
+                <h5 class="card-title">Item 3</h5>
+                <p class="card-text">Description of item 3.</p>
+                <a href="#" class="btn">View Item</a>
+            </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer>
+    <p>&copy; 2024 AuctionSite. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
+{% endblock body %}
