@@ -10,5 +10,7 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('viewitem/', views.item1, name='viewitem'),
     path('item/', views.item, name='item'),
+    path('categoryitems/', views.categoryitems, name='categoryitems'),
+    path('categoryitem/', views.categoryitembefore, name='categoryitem'),
     path('logout/', views.user_logout, name='logout'),
 ]

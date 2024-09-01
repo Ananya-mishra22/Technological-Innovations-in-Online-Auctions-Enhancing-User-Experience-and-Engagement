@@ -61,6 +61,15 @@ def item(request):
     user=request.user
     if user.is_authenticated:
         return render(request,'item.html')
+    
+@login_required
+def categoryitems(request):
+    user=request.user
+    if user.is_authenticated:
+        return render(request,'catagoreyitems.html')
+    
+def categoryitembefore(request):
+    return render(request,'catagoreyitembefore.html')
 
 
 def item1(request):

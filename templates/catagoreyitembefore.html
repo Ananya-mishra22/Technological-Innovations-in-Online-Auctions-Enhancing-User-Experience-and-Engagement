@@ -1,4 +1,4 @@
-{% extends "index1.html" %}
+{% extends "index.html" %}
 {% block title %}Home{% endblock title %}
 {% block body %}
 <!DOCTYPE html>
@@ -102,42 +102,6 @@
 </head>
 <body>
 
-<!-- Banner -->
-<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
-      <div class="carousel-item active" style="opacity:0.6;
-      background:white;">
-        <img class="d-block w-100" src="https://media.istockphoto.com/id/1216963278/vector/female-character-holding-bid-plate-in-hand-stand-at-huge-laptop-with-online-auction.jpg?s=612x612&w=0&k=20&c=uO0zzzH3r-O4MTf6RPkIFdZr6EcaBOS9mYV-q0yg1wU=" alt="First slide" height="600" style="opacity: 0.5;">
-            <div class="cal-text">
-                <h1 id="cal">Discover Exclusive Auctions</h1>
-                <p id="cal">Find unique items at great prices.</p>
-            </div>
-    </div>
-      <div class="carousel-item" style="opacity:0.6;
-      background:white;">
-        <img class="d-block w-100" src="https://static.startuptalky.com/2022/05/online-auction-websites-StartupTalky--1-.jpg" alt="Second slide" height="600" style="opacity: 0.5;">
-        <div class="cal-text">
-            <h1>Discover Exclusive Auctions</h1>
-            <p>Find unique items at great prices.</p>
-        </div>
-    </div>
-      <div class="carousel-item" style="opacity:0.6;
-      background:white;">
-        <img class="d-block w-100" src="https://www.appsflyer.com/wp-content/uploads/2024/01/what-is-second-price-auction-1.jpg" alt="Third slide" height="600" style="opacity: 0.5;">
-        <div class="cal-text">
-            <h1>Discover Exclusive Auctions</h1>
-            <p>Find unique items at great prices.</p>
-        </div>
-    </div>
-    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </a>
-</div>
 
 <div class="b-example-divider"></div>
 
@@ -161,7 +125,7 @@
                 <img src="item2.jpg" alt="Item 2">
                 <h5 class="card-title">Item 2</h5>
                 <p class="card-text">Description of item 2.</p>
-                <a href="#" class="btn">View Item</a>
+                <a href="/item" class="btn">View Item</a>
             </div>
         </div>
 
@@ -171,7 +135,44 @@
                 <img src="item3.jpg" alt="Item 3">
                 <h5 class="card-title">Item 3</h5>
                 <p class="card-text">Description of item 3.</p>
-                <a href="#" class="btn">View Item</a>
+                <a href="/item" class="btn">View Item</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="b-example-divider"></div>
+
+<!-- Auction Items -->
+<div class="container">
+    <div class="row">
+        <!-- Auction Item 1 -->
+        <div class="col">
+            <div class="card">
+                <img src="item4.jpg" alt="Item 4">
+                <h5 class="card-title">Item 4</h5>
+                <p class="card-text">Description of item 4.</p>
+                <a href="/item" class="btn">View Item</a>
+            </div>
+        </div>
+
+        <!-- Auction Item 2 -->
+        <div class="col">
+            <div class="card">
+                <img src="item6.jpg" alt="Item 6">
+                <h5 class="card-title">Item 5</h5>
+                <p class="card-text">Description of item 5.</p>
+                <a href="/item" class="btn">View Item</a>
+            </div>
+        </div>
+
+        <!-- Auction Item 3 -->
+        <div class="col">
+            <div class="card">
+                <img src="item6.jpg" alt="Item 6">
+                <h5 class="card-title">Item 6</h5>
+                <p class="card-text">Description of item 6.</p>
+                <a href="/item" class="btn">View Item</a>
             </div>
         </div>
     </div>
