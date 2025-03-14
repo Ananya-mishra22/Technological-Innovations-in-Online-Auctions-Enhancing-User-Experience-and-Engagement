@@ -1,0 +1,13 @@
+<!-- templates/acc_active_email.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Activate Your Account</title>
+</head>
+<body>
+    <p>Hi {{ user.username }},</p>
+    <p>Thank you for registering. Please click the link below to activate your account:</p>
+    <a href="http://{{ domain }}{% url 'activate' uidb64=uidb64 token=token %}">Activate Account</a>
+    <p>If you did not make this request, please ignore this email.</p>
+</body>
+</html>

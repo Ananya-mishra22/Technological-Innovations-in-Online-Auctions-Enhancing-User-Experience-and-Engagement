@@ -72,7 +72,7 @@
 
     .card .btn {
         padding: 10px 20px;
-        background-color: blue; /* Keep button color intact */
+        background-color: black; /* Keep button color intact */
         color: white; /* Keep text color white */
         border: none;
         border-radius: 5px;
@@ -81,6 +81,11 @@
         text-decoration: none;
     }
 
+    .btn:hover {
+        background-color: #C49D29;
+        color: #ffffff;
+    }
+    
     /* Footer styling */
     footer {
         background-color: var(--bg-color);
@@ -101,83 +106,46 @@
 </style>
 </head>
 <body>
-
-
-<div class="b-example-divider"></div>
+    
+    <div class="b-example-divider"></div>
+    <div class="d-flex justify-content-center align-items-center" style="height: 100px;">
+        <a href="{% url 'categoryitems' category.name %}" class="d-flex align-items-center mb-2 mb-lg-0 text-decoration-none">
+            
+          <h2 class="bidify-title">{{ category.name }}</h2>
+          </a>
+    </div>
+{% comment %} <div class="b-example-divider"></div> {% endcomment %}
 
 
 <!-- Auction Items -->
 <div class="container">
     <div class="row">
         <!-- Auction Item 1 -->
+        {% for product in products %}
         <div class="col">
             <div class="card">
-                <img src="item1.jpg" alt="Item 1">
-                <h5 class="card-title">Item 1</h5>
-                <p class="card-text">Description of item 1.</p>
-                <a href="/item" class="btn">View Item</a>
+                <img src="{{ product.image_url }}" alt="Item 1" style="width: 400px; height: 400px; object-fit: cover;">
+                <h5 class="card-title">{{ product.name|truncatewords:3 }}</h5>
+                <p class="card-text">{{ product.description|truncatewords:10 }}</p>
+                <p class="card-text"><strong>Price: &#8377;{{ product.price }}</strong></p>
+                {% if product.auction %}
+              <p class="card-text">
+                <strong>Auction Dates:</strong> {{ product.auction.start_date|date:"F j, Y, g:i a" }} - 
+                {{ product.auction.end_date|date:"F j, Y, g:i a" }}
+              </p>
+            {% else %}
+              <p class="card-text"><em>No auction scheduled.</em></p>
+            {% endif %}
+                <a href="{% url 'item' product.id %}" class="btn">View Item</a>
             </div>
         </div>
+        {% empty %}
+      <p>No products available in this category.</p>
+    {% endfor %}
 
-        <!-- Auction Item 2 -->
-        <div class="col">
-            <div class="card">
-                <img src="item2.jpg" alt="Item 2">
-                <h5 class="card-title">Item 2</h5>
-                <p class="card-text">Description of item 2.</p>
-                <a href="/item" class="btn">View Item</a>
-            </div>
-        </div>
-
-        <!-- Auction Item 3 -->
-        <div class="col">
-            <div class="card">
-                <img src="item3.jpg" alt="Item 3">
-                <h5 class="card-title">Item 3</h5>
-                <p class="card-text">Description of item 3.</p>
-                <a href="/item" class="btn">View Item</a>
-            </div>
-        </div>
     </div>
 </div>
-
 <div class="b-example-divider"></div>
-
-<!-- Auction Items -->
-<div class="container">
-    <div class="row">
-        <!-- Auction Item 1 -->
-        <div class="col">
-            <div class="card">
-                <img src="item4.jpg" alt="Item 4">
-                <h5 class="card-title">Item 4</h5>
-                <p class="card-text">Description of item 4.</p>
-                <a href="/item" class="btn">View Item</a>
-            </div>
-        </div>
-
-        <!-- Auction Item 2 -->
-        <div class="col">
-            <div class="card">
-                <img src="item6.jpg" alt="Item 6">
-                <h5 class="card-title">Item 5</h5>
-                <p class="card-text">Description of item 5.</p>
-                <a href="/item" class="btn">View Item</a>
-            </div>
-        </div>
-
-        <!-- Auction Item 3 -->
-        <div class="col">
-            <div class="card">
-                <img src="item6.jpg" alt="Item 6">
-                <h5 class="card-title">Item 6</h5>
-                <p class="card-text">Description of item 6.</p>
-                <a href="/item" class="btn">View Item</a>
-            </div>
-        </div>
-    </div>
-</div>
-
 <!-- Footer -->
 <footer>
     <p>&copy; 2024 AuctionSite. All rights reserved.</p>

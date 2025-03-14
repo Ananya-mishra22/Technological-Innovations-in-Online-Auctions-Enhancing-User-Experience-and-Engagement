@@ -1,0 +1,187 @@
+{% extends "index1.html" %}
+{% block title %}Item Details{% endblock title %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Item Details</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+    }
+
+    .jumbotron {
+        background-color: var(--bg-color);
+        padding: 50px 20px;
+        text-align: center;
+    }
+
+    .jumbotron h1 {
+        font-size: 2.5em;
+        margin-bottom: 10px;
+    }
+
+    .jumbotron p {
+        font-size: 1.2em;
+        margin-bottom: 20px;
+    }
+
+    .container {
+        width: 90%;
+        margin: 0 auto;
+        padding: 20px 0;
+    }
+
+    .item-details {
+        border: 1px solid var(--border-color);
+        border-radius: 5px;
+        padding: 20px;
+        background-color: var(--card-bg-color);
+        color: var(--text-color);
+        margin-bottom: 20px;
+    }
+
+    .item-details img {
+        max-width: 100%;
+        border-radius: 5px;
+        margin-bottom: 15px;
+    }
+
+    .item-details h2 {
+        font-size: 2em;
+        margin-bottom: 10px;
+    }
+
+    .item-details p {
+        font-size: 1.2em;
+        margin-bottom: 15px;
+    }
+
+    .item-details .btn {
+        padding: 10px 20px;
+        background-color: black; /* Keep button color intact */
+        color: white; /* Keep text color white */
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+    .similar-products {
+        margin-top: 30px;
+    }
+
+    .similar-products .card {
+        border: 1px solid var(--border-color);
+        border-radius: 5px;
+        padding: 15px;
+        background-color: var(--card-bg-color);
+        color: var(--text-color);
+        margin-bottom: 20px;
+    }
+
+    .similar-products img {
+        max-width: 100%;
+        border-radius: 5px;
+        margin-bottom: 15px;
+    }
+
+    .similar-products .btn {
+        padding: 10px 20px;
+        background-color: black; /* Keep button color intact */
+        color: white; /* Keep text color white */
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+    .bid-form {
+        margin-top: 20px;
+    }
+
+    .bid-form input[type="number"] {
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid var(--border-color);
+        font-size: 16px;
+        width: calc(100% - 22px);
+        margin-bottom: 10px;
+    }
+
+    .bid-form button {
+        padding: 10px 20px;
+        background-color: blue; /* Keep button color intact */
+        color: white; /* Keep text color white */
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
+
+<!-- Banner -->
+<div class="jumbotron">
+    <h1>Item Details</h1>
+    <p>Learn more about this item and place your bid!</p>
+</div>
+
+<!-- Item Details -->
+<div class="container">
+    <div class="item-details">
+        <img src="item1.jpg" alt="Item Image">
+        <h2>Item 1</h2>
+        <p>Description of item 1. This item is unique and has the following features...</p>
+        <button class="btn" onclick="document.getElementById('bid-form').style.display='block'">Place Bid</button>
+
+        <!-- Bid Form -->
+        <div id="bid-form" class="bid-form" style="display: none;">
+            <input type="number" placeholder="Enter your bid amount" min="1" step="0.01">
+            <button type="submit">Submit Bid</button>
+        </div>
+    </div>
+
+    <!-- Similar Products -->
+    <div class="similar-products">
+        <h3>Similar Products</h3>
+        <div class="row">
+            <!-- Similar Product 1 -->
+            <div class="col">
+                <div class="card">
+                    <a href='#' style="text-decoration: none; color: white;">
+                        <img src="item2.jpg" alt="Similar Item 1">
+                        <h5 class="card-title">Item 2</h5>
+                        <p class="card-text">Description of similar item 2.</p>
+                        <a href="#" class="btn">View Item</a>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Similar Product 2 -->
+            <div class="col">
+                <div class="card">
+                    <a href='#' style="text-decoration: none; color: white;">
+                        <img src="item3.jpg" alt="Similar Item 2">
+                        <h5 class="card-title">Item 3</h5>
+                        <p class="card-text">Description of similar item 3.</p>
+                        <a href="#" class="btn">View Item</a>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+{% endblock body %}

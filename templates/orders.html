@@ -1,0 +1,197 @@
+{% extends "index1.html" %}
+{% block title %}Order List{% endblock title %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Order List</title>
+<style>
+    /* Basic styling */
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+    }
+
+    .container {
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    /* Order list styling */
+    .order-list {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .order-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px;
+        border: 1px solid var(--border-color);
+        border-radius: 10px;
+        background-color: var(--card-bg-color);
+        color: var(--text-color);
+        box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .order-item img {
+        max-width: 100px;
+        border-radius: 10px;
+        margin-right: 20px;
+    }
+
+    .order-details {
+        flex-grow: 1;
+    }
+
+    .order-title {
+        font-size: 1.5em;
+        margin-bottom: 10px;
+    }
+
+    .order-price {
+        font-size: 1.2em;
+        margin-bottom: 10px;
+    }
+
+    .order-status {
+        font-size: 1em;
+        font-weight: bold;
+        color: green; /* You can change the color based on status */
+    }
+
+    .order-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        background-color: black; /* Default button color */
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        text-decoration: none;
+        text-align: center;
+    }
+
+    .btn.cancel {
+        background-color: red;
+    }
+    .btn:hover {
+        background-color: #C49D29;
+        color: #ffffff;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>My Orders</h1>
+    {% if auction_registrations %}
+    <div class="order-list">
+        <!-- Order Item 1 -->
+        {% for product in products %}
+        <div class="order-item">
+            <img src="{{ product.image_url }}" alt="Item 1">
+            <div class="order-details">
+                <h2 class="order-title">{{ product.name }}</h2>
+                <p class="order-price"><strong>Price: &#8377;{{ product.price }}</strong></p>
+                <p class="order-status">Status: Delivered</p>
+            </div>
+            {% comment %} <div class="order-actions">
+                <a href="#" class="btn">View Details</a>
+                <a href="#" class="btn cancel">Cancel Order</a>
+            </div> 
+            <p>Auction Time: {{ product.auction.start_time }} to {{ product.auction.end_time }}</p>{% endcomment %}
+            <div class="order-actions">
+            <!-- View Item Details Button -->
+            <a href="{% url 'item' product.id %}" class="btn btn-primary">View Item Details</a>
+
+            <!-- Bid Now Button -->
+            {% if product.auction.is_active %}
+              <a href="{% url 'bid_now' product.id %}" class="btn btn-success">Bid Now</a>
+            {% else %}
+              <button class="btn btn-secondary" disabled>Bid Now</button>
+            {% endif %}
+
+            <!-- Remove Registered Item Button -->
+            <a href="{% url 'remove_registration' product.id %}" class="btn btn-danger cancel">Remove Registration</a>
+        {% comment %} </div> {% endcomment %}
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+      <p>You have no items in your Orders.</p>
+    {% endif %}
+
+    {% if won_products %}
+    {% for won_product in won_products %}
+    <div class="order-list">
+        <!-- Order Item 1 -->
+        
+        <div class="order-item">
+            <img src="{{ won_product.image_url }}" alt="Item 1">
+            <div class="order-details">
+                <h2 class="order-title">{{ won_product.name }}</h2>
+                <p class="order-price"><strong>Price: &#8377;{{ won_product.price }}</strong></p>
+                <p class="order-status">Status: Delivered</p>
+            </div>
+            {% comment %} <div class="order-actions">
+                <a href="#" class="btn">View Details</a>
+                <a href="#" class="btn cancel">Cancel Order</a>
+            </div> 
+            <p>Auction Time: {{ product.auction.start_time }} to {{ product.auction.end_time }}</p>{% endcomment %}
+            <div class="order-actions">
+            <!-- View Item Details Button -->
+            <a href="{% url 'item' won_product.id %}" class="btn btn-primary">View Item Details</a>
+        </div>
+        
+    </div>
+        {% endfor %}
+        {% else %}
+      <p>You have no items in your Orders.</p>
+    {% endif %}
+
+
+        {% comment %} <!-- Order Item 2 -->
+        <div class="order-item">
+            <img src="item2.jpg" alt="Item 2">
+            <div class="order-details">
+                <h2 class="order-title">Item 2 Name</h2>
+                <p class="order-price">item price</p>
+                <p class="order-status">Status: Shipped</p>
+            </div>
+            <div class="order-actions">
+                <a href="#" class="btn">View Details</a>
+                <a href="#" class="btn cancel">Cancel Order</a>
+            </div>
+        </div>
+
+        <!-- Order Item 3 -->
+        <div class="order-item">
+            <img src="item3.jpg" alt="Item 3">
+            <div class="order-details">
+                <h2 class="order-title">Item 3 Name</h2>
+                <p class="order-price">item price</p>
+                <p class="order-status">Status: Processing</p>
+            </div>
+            <div class="order-actions">
+                <a href="#" class="btn">View Details</a>
+                <a href="#" class="btn cancel">Cancel Order</a>
+            </div>
+        </div> {% endcomment %}
+    </div>
+</div>
+
+</body>
+</html>
+{% endblock body %}

@@ -1,3 +1,4 @@
+
 """
 Django settings for TOIA project.
 
@@ -9,7 +10,7 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -31,12 +32,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'Home.apps.HomeConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
 ]
 
 MIDDLEWARE = [
@@ -62,6 +65,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                 # Add your custom context processor
+                'Home.context_processors.product_context',
             ],
         },
     },
@@ -127,3 +132,40 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Media files (Uploaded files)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+from django.contrib.messages import constants as message_constants
+
+# Specify the message storage to use (session-based in this case)
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
+
+MESSAGE_TAGS = {
+    message_constants.DEBUG: 'debug',
+    message_constants.INFO: 'info',
+    message_constants.SUCCESS: 'success',
+    message_constants.WARNING: 'warning',
+    message_constants.ERROR: 'danger',  # Bootstrap uses 'danger' for error alerts
+}
+
+from decouple import config
+
+# # Stripe settings
+# STRIPE_PUBLIC_KEY = config('STRIPE_PUBLIC_KEY', default='your-publishable-key')
+# STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY', default='your-secret-key')
+# STRIPE_WEBHOOK_SECRET = config('STRIPE_WEBHOOK_SECRET', default='your-webhook-secret')
+
+
+# # settings.py
+# RAZORPAY_KEY_ID = "your_key_id"
+# RAZORPAY_KEY_SECRET = "your_key_secret"
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'mishraananya453@gmail.com'  # Your email address
+EMAIL_HOST_PASSWORD = 'elan xqnx ucfm dvap'     # Your email password or app password

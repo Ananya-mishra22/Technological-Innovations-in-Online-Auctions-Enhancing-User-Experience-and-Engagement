@@ -65,7 +65,7 @@
 
     .item-details .btn {
         padding: 10px 20px;
-        background-color: blue; /* Keep button color intact */
+        background-color: black; /* Keep button color intact */
         color: white; /* Keep text color white */
         border: none;
         border-radius: 5px;
@@ -95,7 +95,7 @@
 
     .similar-products .btn {
         padding: 10px 20px;
-        background-color: blue; /* Keep button color intact */
+        background-color: black; /* Keep button color intact */
         color: white; /* Keep text color white */
         border: none;
         border-radius: 5px;
@@ -119,12 +119,16 @@
 
     .bid-form button {
         padding: 10px 20px;
-        background-color: blue; /* Keep button color intact */
+        background-color: black; /* Keep button color intact */
         color: white; /* Keep text color white */
         border: none;
         border-radius: 5px;
         font-size: 16px;
         cursor: pointer;
+    }
+    .btn:hover {
+        background-color: #C49D29;
+        color: #ffffff;
     }
 </style>
 </head>
@@ -132,52 +136,127 @@
 
 <!-- Banner -->
 <div class="jumbotron">
-    <h1>Item Details</h1>
-    <p>Learn more about this item and place your bid!</p>
+    <div class="jumbotron"><div class="d-flex justify-content-center align-items-center" style="height: 0px;">
+        <a href="{% url 'item' product.id %}" class="d-flex align-items-center mb-2 mb-lg-0 text-decoration-none">
+          <h2 class="bidify-title">Item Details</h2>
+          </a>
+    </div>
+    {% comment %} <h1>Item Details</h1>
+    <p>Learn more about this item and place your bid!</p> {% endcomment %}
 </div>
 
 <!-- Item Details -->
 <div class="container">
-    <div class="item-details">
-        <img src="item1.jpg" alt="Item Image">
-        <h2>Item 1</h2>
-        <p>Description of item 1. This item is unique and has the following features...</p>
-        <button class="btn" onclick="document.getElementById('bid-form').style.display='block'">Place Bid</button>
+    
+    <div class="item-details" style="border: 1px solid #ddd; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); max-width: 700px; margin: 0 auto;">
+        <div style="text-align: center;">
+            <img src="{{ product.image_url }}" alt="Item Image" style="width: 400px; height: 400px; object-fit: cover; border-radius: 10px; margin-bottom: 20px;">
+        </div>
+        
+        <h2 style="text-align: center; color: #333; font-size: 28px; margin-bottom: 10px;">{{ product.name }}</h2>
+        <p style="text-align: center; font-size: 16px; color: #555; margin-bottom: 15px;">{{ product.description }}</p>
+        
+        <p style="font-weight: bold; font-size: 18px; color: #333; margin-bottom: 5px;"><strong>Price:</strong> &#8377;{{ product.price }}</p>
+        
+        <p style="font-size: 16px; color: #777; margin-bottom: 5px;"><strong>Quantity Available:</strong> {{ product.quantity }}</p>
+        
+        <p style="font-size: 16px; color: #777; margin-bottom: 20px;"><strong>Category:</strong> {{ product.category.name }}</p>
+    
+        {% if auction %}
+        <div style="background-color: #f8f9fa; padding: 15px; border-radius: 8px; margin-top: 20px; text-align: center;">
+            <p style="font-size: 16px; color: #333; margin-bottom: 10px;">
+                <strong>Auction Starts:</strong> {{ auction.start_date|date:"F j, Y, g:i a" }}<br>
+                <strong>Auction Ends:</strong> {{ auction.end_date|date:"F j, Y, g:i a" }}<br>
+                <strong>Status:</strong> 
+                {% if auction.is_active %}
+                    <span style="color: #fff; background-color: #28a745; padding: 5px 10px; border-radius: 5px;">Active</span>
+                {% elif auction.is_upcoming %}
+                    <span style="color: #fff; background-color: #17a2b8; padding: 5px 10px; border-radius: 5px;">Upcoming</span>
+                    <br><br>
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'auction_registration' product.id %}" class="btn">Register For Auction</a>
+                {% else %}
+                <p>To register for this, please <a href="{% url 'signin' %}" style="color: #007bff;">Sign in</a> first.</p> 
+                {% endif %}
+                    {% else %}
+                    <span style="color: #fff; background-color: #dc3545; padding: 5px 10px; border-radius: 5px;">Ended</span>
+                {% endif %}
+            </p>        
+        </div>
+        {% else %}
+            <p style="text-align: center; font-style: italic; color: #999; margin-top: 15px;">No auction scheduled for this product.</p>
+        {% endif %}
+    
+        <!-- Display Product Attributes -->
+        <div style="margin-top: 20px;">
+            <h5 style="font-size: 18px; font-weight: bold; color: #333;">Attributes:</h5>
+            <ul style="list-style-type: none; padding-left: 0; font-size: 16px; color: #555;">
+                {% for attribute in attributes %}
+                    <li style="margin-bottom: 5px;"><strong>{{ attribute.attribute_name }}:</strong> {{ attribute.attribute_value }}</li>
+                {% empty %}
+                    <li>No additional attributes.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    
+        {% if user.is_authenticated %}
+        <div style="text-align: center; margin-top: 20px;">
+            {% if in_wishlist %}
+            <a href="{% url 'remove_from_wishlist' product.id %}" style="text-decoration: none; color: red; font-size: 24px;">
+                <i class="fas fa-heart"></i> 
+                    {% comment %} Remove from Wishlist {% endcomment %}
+                </a>
+            {% else %}
+                {% comment %} <a href="{% url 'add_to_wishlist' product.id %}" class="btn btn-outline-danger" style="padding: 10px 20px; text-decoration: none; color: #dc3545; border: 1px solid #dc3545; border-radius: 5px;"> {% endcomment %}
+                <a href="{% url 'add_to_wishlist' product.id %}" style="text-decoration: none; color: red; font-size: 24px;">
+                        <i class="far fa-heart"></i> 
+                    {% comment %} Add to Wishlist {% endcomment %}
+                </a>
+            {% endif %}
+        </div>
+        {% else %}
+            <p style="text-align: center; margin-top: 15px;"><a href="{% url 'signin' %}" style="color: #007bff;">Sign in</a> to add items to your wishlist.</p>
+        {% endif %}
+    </div>
+        {% comment %} <p>Event scheduled</p> {% endcomment %}
+        {% comment %} <button class="btn"><a href="/signup" style="text-decoration: none; color: white;">Place Bid</a></button> {% endcomment %}
 
-        <!-- Bid Form -->
+        {% comment %} <!-- Bid Form -->
         <div id="bid-form" class="bid-form" style="display: none;">
             <input type="number" placeholder="Enter your bid amount" min="1" step="0.01">
             <button type="submit">Submit Bid</button>
-        </div>
-    </div>
+        </div> {% endcomment %}
+    {% comment %} </div> {% endcomment %}
 
     <!-- Similar Products -->
     <div class="similar-products">
         <h3>Similar Products</h3>
         <div class="row">
+            {% for similarproduct in similarproducts %}
             <!-- Similar Product 1 -->
             <div class="col">
                 <div class="card">
-                    <a href='#' style="text-decoration: none; color: white;">
-                        <img src="item2.jpg" alt="Similar Item 1">
-                        <h5 class="card-title">Item 2</h5>
-                        <p class="card-text">Description of similar item 2.</p>
-                        <a href="#" class="btn">View Item</a>
+                    <a href='#' style="text-decoration: none; color: black;">
+                        <img src="{{ similarproduct.image_url }}" alt="Similar Item 1" style="width: 250px; height: 250px; object-fit: cover;">
+                        <h5 class="card-title">{{ similarproduct.name|truncatewords:3 }}</h5>
+                        <p class="card-text">{{ similarproduct.description|truncatewords:5  }}</p>
+                        <p class="card-text"><strong>Price: &#8377;{{ similarproduct.price }}</strong></p>
+                        {% if similarproduct.auction %}
+                    <p class="card-text">
+                    <strong>Auction Dates:</strong> <br> {{ similarproduct.auction.start_date|date:"F j, Y, g:i a" }} - 
+                        {{ similarproduct.auction.end_date|date:"F j, Y, g:i a" }}
+                        </p>
+                    {% else %}
+                    <p class="card-text"><em>No auction scheduled.</em></p>
+                    {% endif %}
+                        <a href="{% url 'item' similarproduct.id %}" class="btn">View Item</a>
                     </a>
                 </div>
             </div>
+            {% empty %}
+                <p>No products available in this category.</p>
+            {% endfor %}
 
-            <!-- Similar Product 2 -->
-            <div class="col">
-                <div class="card">
-                    <a href='#' style="text-decoration: none; color: white;">
-                        <img src="item3.jpg" alt="Similar Item 2">
-                        <h5 class="card-title">Item 3</h5>
-                        <p class="card-text">Description of similar item 3.</p>
-                        <a href="#" class="btn">View Item</a>
-                    </a>
-                </div>
-            </div>
         </div>
     </div>
 </div>

@@ -1,0 +1,40 @@
+{% extends "index.html" %}
+{% load static %}
+{% block title %}Auction Events{% endblock title %}
+
+{% block body %}
+<div class="container mt-4">
+    <!-- Ongoing Auction -->
+    <div class="ongoing-auction mb-5">
+        <h2>Ongoing Auction</h2>
+        <div class="auction-item card">
+            <img src="{% static 'ongoing_item.jpg' %}" class="card-img-top" alt="Ongoing Item">
+            <div class="card-body">
+                <h3 class="card-title">Item Name: {{ ongoing_item.name }}</h3>
+                <p class="card-text">Current Bid: ${{ ongoing_item.current_bid }}</p>
+                <p class="card-text">Time Left: {{ ongoing_item.time_left }}</p>
+                <a href="#" class="btn btn-primary">Place a Bid</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Upcoming Auctions -->
+    <div class="upcoming-auctions">
+        <h2>Upcoming Auctions</h2>
+        <div class="row">
+            {% for item in upcoming_items %}
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <img src="{% static item.image %}" class="card-img-top" alt="Upcoming Item {{ item.name }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ item.name }}</h5>
+                        <p class="card-text">Auction Starts: {{ item.start_time }}</p>
+                        <a href="#" class="btn btn-secondary">Register</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock body %}

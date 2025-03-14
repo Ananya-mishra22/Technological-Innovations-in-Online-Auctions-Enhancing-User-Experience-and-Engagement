@@ -10,13 +10,17 @@
     <meta name="generator" content="Hugo 0.122.0">
     <title>first Page</title>
 
+    <!-- Include Font Awesome for the icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/headers/">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
     
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
 
-<link href={% static 'bootstrap.min.css' %} rel="stylesheet">
+    <link href={% static 'bootstrap.min.css' %} rel="stylesheet">
 
     <style>
       .bd-placeholder-img {
@@ -95,9 +99,125 @@
       .bd-mode-toggle .dropdown-menu .active .bi {
         display: block !important;
       }
+
+      .button {
+        display: inline-block;
+        border-radius: 4px;
+        background-color: #f4511e;
+        border: none;
+        color: #FFFFFF;
+        text-align: center;
+        font-size: 28px;
+        padding: 20px;
+        width: 200px;
+        transition: all 0.5s;
+        cursor: pointer;
+        margin: 5px;
+      }
+      
+
+      /* CSS for handling light and dark mode changes */
+  body.light-mode .navbar {
+    background-color: white !important;
+    color: black !important;
+  }
+
+  body.dark-mode .navbar {
+    background-color: black !important;
+    color: white !important;
+  }
+
+  /* Hide dropdown arrow for both light and dark modes */
+  .nav-link.dropdown-toggle::after {
+    display: none !important;
+  }
+
+  /* Adjust text color based on mode */
+  body.light-mode .navbar .nav-link,
+  body.light-mode .navbar .dropdown-item {
+    color: black !important;
+  }
+
+  body.dark-mode .navbar .nav-link,
+  body.dark-mode .navbar .dropdown-item {
+    color: white !important;
+  }
+  .navbar-nav .dropdown-menu {
+    max-width: 300px; /* Set the maximum width for the dropdown */
+    max-height: 400px; /* Set the maximum height for the dropdown */
+    overflow-y: auto; /* Add vertical scroll if the content exceeds the max height */
+  }
+  
+  /* Ensure that the dropdown does not push or resize the navbar */
+  .navbar-nav .dropdown-menu {
+    position: absolute; /* Keep the dropdown positioned absolutely */
+  }
+  /* CSS to override the default blue color for dropdown text */
+  .navbar .dropdown-toggle {
+    color: inherit; /* Inherit color from parent or set a specific color */
+  }
+  
+  .navbar .dropdown-menu .dropdown-item {
+    color: inherit; /* Inherit color from parent or set a specific color */
+  }
+  
+  /* Set custom colors for light and dark modes */
+  body.light-mode .navbar .dropdown-toggle,
+  body.light-mode .navbar .dropdown-item {
+    color: black; /* Set your desired color for light mode */
+  }
+  
+  body.dark-mode .navbar .dropdown-toggle,
+  body.dark-mode .navbar .dropdown-item {
+    color: white; /* Set your desired color for dark mode */
+  }
+  
+  /* Style for the cart button */
+  #cartDropdown {
+    color: inherit;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Hover effect for the cart button */
+  #cartDropdown:hover {
+    color: #007bff; /* Change color on hover (e.g., to Bootstrap's primary color) */
+  }
+
+  /* Ensure the cart icon is centered */
+  #cartDropdown i {
+    font-size: 1.5rem; /* Adjust size as needed */
+  }  
+
+  .bidify-title {
+    font-size: 2rem;  /* Reduced font size */
+    font-weight: bold;
+    background: linear-gradient(45deg, #C49D29, #000000);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding: 5px;  /* Reduced padding */
+    border-radius: 5px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-family: 'Poppins', sans-serif;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+}
+
+.bidify-title:hover {
+    transform: scale(1.05);
+}
+                        
+      
     </style>
 
     
+    <!-- Custom styles for this template <svg class="bi me-2" xmlns={% static 'CMS.png' %} width="40" height="32" role="img" aria-label="Bootstrap"></svg>-->
+    <link href={% static 'headers.css' %} rel="stylesheet">
+  </head>
+  <body>
     <!-- Custom styles for this template <svg class="bi me-2" xmlns={% static 'CMS.png' %} width="40" height="32" role="img" aria-label="Bootstrap"></svg>-->
     <link href={% static 'headers.css' %} rel="stylesheet">
   </head>
@@ -117,7 +237,7 @@
         <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
       </symbol>
     </svg>
-
+{% comment %} 
     <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
       <button class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center"
               id="bd-theme"
@@ -151,7 +271,7 @@
           </button>
         </li>
       </ul>
-    </div>
+    </div> {% endcomment %}
 
     
 <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
@@ -179,41 +299,73 @@
 </svg>
 
 <main>
-  <div class="b-example-divider"></div>
+  {% comment %} <div class="b-example-divider"></div> {% endcomment %}
 
-  <header class="p-3 text-bg-dark">
+  <header class="navbar p-3">
     <div class="container">
-      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-          <img src={% static 'logo.png' %} alt="mdo" width="55" height="40" class="bi me-2">
+      <div class="d-flex flex-wrap align-items-center justify-content-between">
+        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-decoration-none">
+          <img src="{% static 'image/logo(1).png' %}" alt="mdo" width="140" height="110" class="bi me-2">
         </a>
-
-        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"><li><a href="/" class="nav-link px-2 text-white">Home</a></li>
+  
+        <ul class="nav col-12 col-lg-auto mb-2 justify-content-center mb-md-0">
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-white" href="#" data-bs-toggle="dropdown" aria-expanded="false">Category</a>
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Category</a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="/categoryitem">Luxury bags</a></li>
-              <li><a class="dropdown-item" href="/categoryitem">Home decoration</a></li>
-              <li><a class="dropdown-item" href="/categoryitem">Vase</a></li>
-              <li><a class="dropdown-item" href="/categoryitem">Shoes</a></li>
-              <li><a class="dropdown-item" href="/categoryitem">Paintings</a></li>
+              <li><a class="dropdown-item" href="/categoryitems/Luxury Bags">Luxury bags</a></li>
+              <li><a class="dropdown-item" href="/categoryitems/Home decoration">Home decoration</a></li>
+              <li><a class="dropdown-item" href="/categoryitems/Shoes">Shoes</a></li>
+              <li><a class="dropdown-item" href="/categoryitems/Paintings">Paintings</a></li>
             </ul>
           </li>
-          <li><a href="/" class="nav-link px-2 text-white">Contact</a></li>
+          <li>
+            <a href="/contact" class="nav-link link-body-emphasis">
+              {% comment %} <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg> {% endcomment %}
+              Customer care
+            </a>
+          </li>
+{% comment %}           
+          <li><a href="/events" class="nav-link px-2 text-white">Events</a></li>  {% endcomment %}
         </ul>
+        
       
-    <form>
-      <button type="button" class="btn btn-outline-light me-2"><a href='/signin' class="nav-link px-2 text-white">Signin</a></button>
-      <button type="button" class="btn btn-outline-light me-2"><a href='/signup' class="nav-link px-2 text-white">Signup</a></button>
+      </div>
+      <div class="d-flex justify-content-center align-items-center" style="height: 100px;">
+        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-decoration-none">
+          <h1 class="bidify-title">Bidify</h1>
+          </a>
+    </div>
+    
+    
+        <div class="d-flex align-items-center ms-right"> 
+          <form method="GET" action="{% url 'product_search' %}">
+            <div class="input-group">
+              <input type="text" class="form-control" name="q" placeholder="Search products..." value="{{ request.GET.q }}">
+              <button type="submit" class="btn btn-dark me-2">
+                <i class="fas fa-search"></i>
+              </button>
+            </div>
+          </form>
+          
+          
+      <button type="button" class="btn btn-outline-dark me-2"><a href='/signin' class="nav-link px-2">Signin</a></button>
+      <button type="button" class="btn btn-outline-dark me-2"><a href='/signup' class="nav-link px-2">Signup</a></button>
     </form> 
   </div>
 </div>
   </header>
+  
+  
+  
+  
+  
 
-  <div class="b-example-divider"></div>
+  {% comment %} <div class="b-example-divider"></div> {% endcomment %}
  
 </main>
 <script src={% static 'bootstrap.bundle.min.js' %}></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Bootstrap Bundle with Popper.js -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 {% block body %}{% endblock body %}

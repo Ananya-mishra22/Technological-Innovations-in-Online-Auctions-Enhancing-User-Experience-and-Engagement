@@ -1,0 +1,146 @@
+{% extends "index.html" %}
+{% load static %}
+{% block title %}Contact Us & FAQ{% endblock title %}
+{% block body %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us & FAQ</title>
+  <link rel="stylesheet" href="{% static 'contactusstyle.css' %}">
+</head>
+<body>
+  <section class="faq-section">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-container">
+      <!-- FAQ 1 -->
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <p>What is your return policy?</p>
+          <span class="arrow">&#x25BC;</span>
+        </div>
+        <div class="faq-answer">
+          <p>Our return policy allows returns within 30 days of purchase with a valid receipt.</p>
+        </div>
+      </div>
+
+      <!-- FAQ 2 -->
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <p>How can I track my order?</p>
+          <span class="arrow">&#x25BC;</span>
+        </div>
+        <div class="faq-answer">
+          <p>Once your order is shipped, you will receive a tracking link via email.</p>
+        </div>
+      </div>
+
+      <!-- FAQ 3 -->
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <p>What payment methods do you accept?</p>
+          <span class="arrow">&#x25BC;</span>
+        </div>
+        <div class="faq-answer">
+          <p>We accept all major credit cards, PayPal, and Apple Pay.</p>
+        </div>
+      </div>
+
+      <!-- FAQ 4 -->
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <p>Can I cancel my order?</p>
+          <span class="arrow">&#x25BC;</span>
+        </div>
+        <div class="faq-answer">
+          <p>Yes, you can cancel your order within 24 hours of placing it by contacting our support team.</p>
+        </div>
+      </div>
+
+      <!-- FAQ 5 -->
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <p>How do I contact customer service?</p>
+          <span class="arrow">&#x25BC;</span>
+        </div>
+        <div class="faq-answer">
+          <p>You can contact customer service through the form on our contact page or by emailing support@yourcompany.com.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Us Section -->
+  <section class="contact-section">
+    <div class="container">
+      <!-- Left Section -->
+      <div class="contact-left">
+        <h1>CONTACT US</h1>
+        <p class="description">
+          Should you need any further information, please do not hesitate to contact us.
+          We are happy to assist you with your queries.
+        </p>
+
+        <div class="contact-details">
+          <h3>Contact Information:</h3>
+          <p>Email: support@yourcompany.com<br>Phone: +123 456 7890</p>
+        </div>
+
+        <!-- Social Media Icons -->
+        <div class="social-icons">
+          <a href="#"><img src="{% static 'image/Instagram.jpg' %}" alt="Instagram"></a>
+          <a href="#"><img src="{% static 'image/Facebook.jpg' %}" alt="Facebook"></a>
+          <a href="#"><img src="{% static 'image/Youtube.jpg' %}" alt="YouTube"></a>
+        </div>
+      </div>
+
+      <!-- Right Section - Contact Form -->
+      <div class="contact-right">
+        {% comment %} {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        {% endfor %}
+      {% endif %} {% endcomment %}
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+          <div class="form-group">
+            <input type="text" name="name" placeholder="Name" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <input type="email" name="email" placeholder="Email" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <input type="text" name="subject" placeholder="Subject" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <textarea name="message" placeholder="Ask your question" rows="5" class="form-control" required></textarea>
+          </div>
+          <div class="form-group">
+            <input type="file" name="file" class="form-control">
+          </div>
+          <button type="submit" class="submit-btn">Submit</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    function toggleFAQ(faqItem) {
+      const answer = faqItem.nextElementSibling;
+      const arrow = faqItem.querySelector('.arrow');
+      if (answer.style.display === 'block') {
+        answer.style.display = 'none';
+        arrow.innerHTML = '&#x25BC;';
+      } else {
+        answer.style.display = 'block';
+        arrow.innerHTML = '&#x25B2;';
+      }
+    }
+  </script>
+</body>
+</html>
+
+{% endblock body %}

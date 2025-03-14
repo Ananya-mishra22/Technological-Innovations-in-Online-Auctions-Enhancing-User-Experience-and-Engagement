@@ -1,19 +1,28 @@
 {% extends "index1.html" %}
+{% load static %}
 {% block title %}Home{% endblock title %}
 {% block body %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+
+<link rel="stylesheet" href="{% static 'style1.css' %}">
+<link rel="stylesheet" href="{% static 'script.js' %}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+          <meta name='viewport' content='width=device-width, initial-scale=1'>
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Main Page</title>
 <style>
     /* Basic styling for the page */
-    body {
+    {% comment %} body {
         font-family: Arial, sans-serif;
         margin: 0;
         padding: 0;
-    }
+    } {% endcomment %}
 
     /* Jumbotron styling */
     .cal-text{
@@ -72,7 +81,7 @@
 
     .card .btn {
         padding: 10px 20px;
-        background-color: blue; /* Keep button color intact */
+        background-color: black; /* Keep button color intact */
         color: white; /* Keep text color white */
         border: none;
         border-radius: 5px;
@@ -98,12 +107,61 @@
     ul {
         list-style-type: none;
     }
+    .scroll-container {
+        position: relative;
+        display: flex;
+        align-items: center;
+      }
+    
+      .cards-wrapper {
+        display: flex;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        gap: 1rem;
+        padding: 1rem;
+        scrollbar-width: none; /* Firefox */
+      }
+    
+      .cards-wrapper::-webkit-scrollbar {
+        display: none; /* Hide scrollbar on Webkit browsers */
+      }
+    
+      .col {
+        min-width: 250px; /* Set the width of each card */
+        flex: 0 0 auto;
+      }
+    
+      .scroll-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 2rem;
+        cursor: pointer;
+        z-index: 10;
+        background-color: rgba(255, 255, 255, 0.7);
+        border-radius: 50%;
+        padding: 0.3rem;
+        user-select: none;
+      }
+    
+      .scroll-left {
+        left: 10px;
+      }
+    
+      .scroll-right {
+        right: 10px;
+      }
+    
+      .scroll-arrow:hover {
+        background-color: rgba(0, 0, 0, 0.2);
+      }
 </style>
 </head>
 <body>
+  
 
 <!-- Banner -->
-<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+{% comment %} <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active" style="opacity:0.6;
       background:white;">
@@ -137,51 +195,229 @@
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
     </a>
-</div>
+</div> {% endcomment %}
 
-<div class="b-example-divider"></div>
+
+<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="{% static 'image/slide1.jpg' %}" class="d-block w-100" alt="First Slide">
+        {% comment %} <video class="d-block w-100" autoplay muted loop>
+          <source src="{% static 'image/vslide1.mp4' %}" type="video/mp4">
+      </video> {% endcomment %}
+        <div class="carousel-caption d-none d-md-block">
+          
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'image/slide2.jpg' %}" class="d-block w-100" alt="Second Slide">
+        <div class="carousel-caption d-none d-md-block">
+          
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
 
 
 <!-- Auction Items -->
-<div class="container">
-    <div class="row">
-        <!-- Auction Item 1 -->
-        <div class="col">
-            <div class="card">
-                <img src="item1.jpg" alt="Item 1">
-                <h5 class="card-title">Item 1</h5>
-                <p class="card-text">Description of item 1.</p>
-                <a href="/item" class="btn">View Item</a>
-            </div>
-        </div>
 
-        <!-- Auction Item 2 -->
-        <div class="col">
-            <div class="card">
-                <img src="item2.jpg" alt="Item 2">
-                <h5 class="card-title">Item 2</h5>
-                <p class="card-text">Description of item 2.</p>
-                <a href="#" class="btn">View Item</a>
-            </div>
-        </div>
-
-        <!-- Auction Item 3 -->
-        <div class="col">
-            <div class="card">
-                <img src="item3.jpg" alt="Item 3">
-                <h5 class="card-title">Item 3</h5>
-                <p class="card-text">Description of item 3.</p>
-                <a href="#" class="btn">View Item</a>
-            </div>
-        </div>
+<section class="items my-5">
+    <div class="container text-center">
+      <div data-aos="zoom-in-up">
+        <div class="d-flex justify-content-center align-items-center" style="height: 100px;">
+          <a href="/home" class="d-flex align-items-center mb-2 mb-lg-0 text-decoration-none">
+            <h2 class="bidify-title">Upcoming Auctions</h2>
+            </a>
+      </div>
+        <hr class="w-25 m-auto">
+      </div>
     </div>
+  </section>
+<div class="scroll-container">
+    <!-- Left Scroll Arrow -->
+    <div class="scroll-arrow scroll-left">&#8249;</div>
+
+<div class="cards-wrapper">
+    {% for product in upcoming_auctions %}
+    <!-- Card 1 -->
+    <div class="col">
+      <div class="card h-100">
+        <img src="{{ product.image_url }}" class="card-img-top" alt="{{ product.name }}" style="width: 400px; height: 400px; object-fit: cover;">
+        <div class="card-body" data-aos="zoom-out">
+          <h5 class="card-title">{{ product.name|truncatewords:3 }}</h5>
+          <p class="card-text">{{ product.description|truncatewords:5 }}</p>
+          <p class="card-text"><strong>Price: &#8377;{{ product.price }}</strong></p>
+          <p class="card-text">
+            <strong>Auction Dates:</strong>
+            {{ product.auction.start_date|date:"F j, Y, g:i a" }} -
+            {{ product.auction.end_date|date:"F j, Y, g:i a" }}
+          </p>
+          <a href="{% url 'item' product.id %}" class="btn btn-primary">View Item</a>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">Last updated 3 mins ago</small>
+        </div>
+        <!-- Heart Icon -->
+        {% if user.is_authenticated %}
+          {% if product.id in wishlist_product_ids %}
+            <div class="heart-icon">
+              <a href="{% url 'remove_from_wishlist' product.id %}">
+                  <i class="fa fa-heart" style='color:red'></i>
+              </a>
+            </div>
+            {% else %}
+            <div class="heart-icon">
+              <a href="{% url 'add_to_wishlist' product.id %}">
+                  <i class="fa fa-heart"></i>
+              </a>
+            </div>
+            {% endif %}
+        {% else %}
+            <p><a href="{% url 'login' %}">Login</a> to add items to your wishlist.</p>
+        {% endif %}
+        {% comment %} <div class="heart-icon">
+          <i class="fa fa-heart"></i>
+        </div> {% endcomment %}
+      </div>
+     
+    
+    </div>
+    {% empty %}
+    <p>No upcoming auctions available at the moment.</p>
+    {% endfor %}
 </div>
 
+  
+    <!-- Right Scroll Arrow -->
+    <div class="scroll-arrow scroll-right">&#8250;</div>
+  </div>
+
+<section class="category-section my-15">
+  <div class="d-flex justify-content-center align-items-center" style="height: 100px;">
+    <a href="/home" class="d-flex align-items-center mb-2 mb-lg-0 text-decoration-none">
+      <h2 class="bidify-title">Explore Categories</h2>
+      </a>
+</div>
+    <hr class="w-25 m-auto  ">
+    <div data-aos="zoom-in-up">
+    <div class="category-container">
+      
+      <!-- Category 1 -->
+      <div class="category-card" onclick="window.location.href='/categoryitems/Luxury Bags'">
+        <img src="{% static 'image/bags.png' %}" alt="Category 1" style="width: 250px; height: 250px; object-fit: cover;">
+        <p class="category-title" >Bags</p>
+      </div>
+  
+      <!-- Category 2 -->
+      <div class="category-card" onclick="window.location.href='/categoryitems/Paintings'">
+        <img src="{% static 'image/Pantings.png' %}" alt="Category 2" style="width: 250px; height: 250px; object-fit: cover;">
+        <p class="category-title">Paintings</p>
+      </div>
+  
+      <!-- Category 3 -->
+      <div class="category-card" onclick="window.location.href='/categoryitems/Shoes'">
+        <img src="{% static 'image/shoes.png' %}" alt="Category 3" style="width: 250px; height: 250px; object-fit: cover;">
+        <p class="category-title">Shoes</p>
+      </div>
+  
+      <!-- Category 4 -->
+      <div class="category-card" onclick="window.location.href='/categoryitems/Home decoration'">
+        <img src="{% static 'image/homedecor.png' %}" alt="Category 4" style="width: 250px; height: 250px; object-fit: cover;">
+        <p class="category-title">Home Decore</p>
+      </div>
+    </div>
+  </div>
+  </section>
+  <section class="About my-5">
+    <div class="container text-center" style="border: 2px solid #000000; background-color: rgba(196, 157, 41, 0.4); padding: 20px; border-radius: 10px;">
+      <!-- Centered Heading -->
+      <div class="d-flex justify-content-center align-items-center" style="height: 100px;">
+        <a href="/home" class="d-flex align-items-center mb-2 mb-lg-0 text-decoration-none">
+          <h2 class="bidify-title">About Us</h2>
+          </a>
+    </div>
+      <hr class="w-25 m-auto">
+  
+      <!-- Flex Container for Paragraph and Image -->
+      <div style="display: flex; align-items: center; justify-content: space-between;">
+        <!-- Left Side: Text Content -->
+        <div style="flex: 1; padding-right: 20px;">
+          <p data-aos="fade-right">
+            Bidify is your premier online auction platform designed to create a seamless and engaging experience for both buyers and sellers. Upon registering for an account, users can easily list a variety of items, including shoes, paintings, bags, and vases, complete with detailed descriptions and images. Buyers can explore ongoing auctions and place bids in real time, with notifications keeping them informed about their bidding status. The process is transparent and user-friendly, allowing participants to track auction timelines and updates effortlessly. We prioritize authenticity by implementing a thorough user verification system, ensuring that every bidder and seller is legitimate. Our community is built on trust, with a rating and review system that helps maintain high standards of service and quality. Secure payment options further enhance user confidence, while our dedicated customer support team is always available to assist with any questions or concerns. At Bidify, we are committed to providing a reliable and enjoyable auction experience, making every bid count!
+          </p>
+        </div>
+  
+        <!-- Right Side: Image -->
+        <img src="https://t4.ftcdn.net/jpg/02/89/14/97/240_F_289149774_RpmxqHaiPSEQXWVjvdlTgiZoH7LcHcMZ.jpg" alt="About Us Image" style="width: 150px; height: 150px; border-radius: 8px;">
+      </div>
+    </div>
+  </section>
+  <section class="how it works my-15">
+    <div class="container text-center">
+      <div data-aos="zoom-in-up">
+        <div class="d-flex justify-content-center align-items-center" style="height: 100px;">
+          <a href="/home" class="d-flex align-items-center mb-2 mb-lg-0 text-decoration-none">
+            <h2 class="bidify-title">How it Works</h2>
+            </a>
+      </div>
+        <hr class="w-25 m-auto ">
+      </div>
+    </div>
+  </section>
+  <section class="About my-8"></section>
+    <div class="container text-center">
+      <div data-aos="zoom-in-up">
+        
+        <img src="{% static 'image/how it works .png' %}" class="d-block w-100" alt="...">
+      </div>
+    </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="b-example-divider"></div>
 <!-- Footer -->
 <footer>
     <p>&copy; 2024 AuctionSite. All rights reserved.</p>
 </footer>
+<script>
+    // Select all heart icons
+    const heartIcons = document.querySelectorAll('.heart-icon i');
+  
+    heartIcons.forEach(heart => {
+      heart.addEventListener('click', function() {
+        // Toggle the "clicked" class to change the heart color
+        this.classList.toggle('clicked');
+      });
+    });
 
+    const cardsWrapper = document.querySelector('.cards-wrapper');
+
+  // Add click event listener for the left arrow
+  document.querySelector('.scroll-left').addEventListener('click', () => {
+    // Scroll left by the width of one card
+    cardsWrapper.scrollBy({ left: -cardsWrapper.querySelector('.col').clientWidth, behavior: 'smooth' });
+  });
+
+  // Add click event listener for the right arrow
+  document.querySelector('.scroll-right').addEventListener('click', () => {
+    // Scroll right by the width of one card
+    cardsWrapper.scrollBy({ left: cardsWrapper.querySelector('.col').clientWidth, behavior: 'smooth' });
+  });
+  </script>
 </body>
 </html>
 {% endblock body %}

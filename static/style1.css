@@ -1,0 +1,137 @@
+*{padding: 0; margin: 0; box-sizing: border-box;}
+body{
+    overflow-x: hidden;
+}
+h1 {
+    font-family: 'Dancing Script', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif , Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  
+  }
+  p {
+    font-family: 'Dancing Script', sans-serif;
+  }
+  
+  h2, h3, h4, h5, h6 {
+    font-family: 'Dancing Script', sans-serif;
+  }
+
+.carousel-inner img{
+    width: 100%;
+    height: 90vh;
+}
+
+*{padding: 0; margin: 0; box-sizing: border-box;}
+body{
+    overflow-x: hidden;
+}
+h1 {
+    font-family: 'Dancing Script', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif , Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  
+  }
+  p {
+    font-family: 'Dancing Script', sans-serif;
+  }
+  
+  h2, h3, h4, h5, h6 {
+    font-family: 'Dancing Script', sans-serif;
+  }
+
+.carousel-inner img{
+    width: 100%;
+    height: 90vh;
+
+}
+
+.scroll-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.cards-wrapper {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  gap: 1rem;
+  padding: 1rem;
+  scrollbar-width: none; /* Firefox */
+}
+
+.cards-wrapper::-webkit-scrollbar {
+  display: none; /* Hide scrollbar on Webkit browsers */
+}
+
+.col {
+  min-width: 250px; /* Set the width of each card */
+  flex: 0 0 auto;
+}
+
+.scroll-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 10;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  padding: 0.3rem;
+  user-select: none;
+}
+
+.scroll-left {
+  left: 10px;
+}
+
+.scroll-right {
+  right: 10px;
+}
+
+.scroll-arrow:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.heart-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.heart-icon i {
+  font-size: 24px;
+  color: grey;
+  transition: color 0.3s ease;
+}
+
+.heart-icon i.clicked {
+  
+  color: red;
+}
+.category-section {
+  text-align: center; /* Center the heading */
+}
+/*categories section*/
+.category-section {
+  text-align: center; /* Center the heading */
+}
+
+.category-container {
+  display: flex; /* Use flexbox to align items in a row */
+  justify-content: center; /* Center the cards horizontally */
+  flex-wrap: wrap; /* Allow items to wrap if the screen is narrow */
+  gap: 20px; /* Space between cards */
+}
+
+.category-card {
+  flex: 0 0 250px; /* Fixed width for the cards */
+  cursor: pointer; /* Show pointer on hover */
+  text-align: center; /* Center align text */
+  transition: transform 0.3s ease; /* Smooth transition for the transform */
+}
+
+.category-card:hover {
+  transform: scale(1.1); /* Scale up the card on hover */
+}
+
+.category-title {
+  margin-top: 10px; /* Space between image and text */
+}
